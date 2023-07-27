@@ -1,0 +1,27 @@
+version: '3'
+services:
+  service_name:
+    container_name: service_name
+    restart: always
+    build: .
+    volumes:
+      - ./app:/app
+      - ./storage:/storage
+    ports:
+      - '5002:80' # Change 5002 to your port
+    env_file:
+      - .env.prod
+    networks:
+      - service_network
+
+    # Uncomment this if you want to use GPU in your service
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           device_ids: ['0'] # Change this to your GPU ID
+    #           capabilities: [gpu]
+
+networks:
+  service_network:

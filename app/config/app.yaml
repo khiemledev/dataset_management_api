@@ -1,0 +1,19 @@
+app:
+  host: 0.0.0.0
+  port: 80
+  logdir: './log'
+
+  # CORS
+  cors:
+    origins:
+      - '*'
+    methods:
+      - '*'
+    headers:
+      - '*'
+
+env_name_here: ${env:YOUR_ENV_NAME}
+
+storage:
+  root: /Users/khiemle/Development/ViAct/DataManagementAPI/storage/
+  remote: /Users/khiemle/Development/ViAct/DataManagementAPI/remote_storage/
