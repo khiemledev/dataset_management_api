@@ -20,7 +20,7 @@ class StorageWrapper:
         path: str | Path,
         dataset: str,
     ) -> Path:
-        path = self.DATASET / dataset / path
+        path = self.DATASET / dataset / 'dataset' / path
         path.parent.mkdir(parents=True, exist_ok=True)
         with open(path, 'wb') as f:
             f.write(file)
@@ -32,7 +32,7 @@ class StorageWrapper:
         return dataset_path.exists()
 
     def list_files(self, dataset: str) -> list[Path]:
-        dataset_path = self.DATASET / dataset
+        dataset_path = self.DATASET / dataset / 'dataset'
         if not dataset_path.exists():
             raise FileNotFoundError(f'Dataset {dataset} not found')
 
@@ -42,7 +42,7 @@ class StorageWrapper:
         return files
 
     def delete_file(self, path: str, dataset: str):
-        path = self.DATASET / dataset / path
+        path = self.DATASET / dataset / 'dataset' / path
         if not path.exists():
             raise FileNotFoundError(f'File {path} not found')
 

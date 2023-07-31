@@ -134,10 +134,15 @@ def delete_file(
             'message': f'Dataset {dataset_name} does not exist',
         }
 
-    storage.delete_file(
-        path=file_path,
-        dataset=dataset_name,
-    )
+    try:
+        storage.delete_file(
+            path=file_path,
+            dataset=dataset_name,
+        )
+    except FileNotFoundError:
+        return {
+            'message': f'File {file_path} not found',
+        }
 
     return {
         'message': 'File deleted successfully',
